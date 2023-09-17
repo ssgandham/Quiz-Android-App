@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }else{
-                val intent = Intent(this, QuestionsActiity::class.java)
+                val intent = Intent(this, QuestionsActivity::class.java)
                 startActivity(intent)
             }
         }
