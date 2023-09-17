@@ -14,6 +14,8 @@ class QuestionsActiity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions_actiity)
 
+        val questionList = Constants.getQuestions()
+
 
     }
 }
