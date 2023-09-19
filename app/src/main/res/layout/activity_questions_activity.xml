@@ -16,7 +16,7 @@
       android:padding="16dp">
 
       <TextView
-          android:id="@+id/viewQuestion"
+          android:id="@+id/questionText"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="10dp"
@@ -53,7 +53,7 @@
               android:progress="0" />
 
           <TextView
-              android:id="@+id/tv_progress"
+              android:id="@+id/questionProgress"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:gravity="center"
@@ -64,7 +64,7 @@
       </LinearLayout>
 
       <TextView
-          android:id="@+id/tv_option_one"
+          android:id="@+id/question_option_one"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="10dp"
@@ -76,7 +76,7 @@
           tools:text="Apple" />
 
       <TextView
-          android:id="@+id/tv_option_two"
+          android:id="@+id/question_option_two"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginStart="10dp"
@@ -91,7 +91,7 @@
           tools:text="Google" />
 
       <TextView
-          android:id="@+id/tv_option_three"
+          android:id="@+id/question_option_three"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginStart="10dp"
@@ -106,7 +106,7 @@
           tools:text="Android Inc." />
 
       <TextView
-          android:id="@+id/tv_option_four"
+          android:id="@+id/question_option_four"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginStart="10dp"
