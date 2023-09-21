@@ -12,10 +12,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var btStart: Button = findViewById(R.id.btStart)
-        var etText: AppCompatEditText = findViewById(R.id.etText)
+        var userName: AppCompatEditText = findViewById(R.id.etText)
 
         btStart.setOnClickListener{
-            val enteredText = etText.text.toString()
+            val enteredText = userName.text.toString()
 
             if(enteredText.isEmpty()) {
                 Toast.makeText(
@@ -24,8 +24,10 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }else{
-                val intent = Intent(this, QuestionsActivity::class.java)
+                val intent = Intent(this@MainActivity, QuestionsActivity::class.java)
+                intent.putExtra(Constants.USER_NAME, userName.text.toString())
                 startActivity(intent)
+                finish()
             }
         }
     }
