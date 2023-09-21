@@ -1,6 +1,7 @@
 package com.example.quiz
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +33,9 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     var size: Int? = null
     var btSubmit: Button? = null
     private var mCorrectAnswers: Int = 0
+    var correctAnswer: Int?= null
+
+    var userName:String?= null
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +62,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         questionList = Constants.getQuestions()
         size = questionList?.size
-
+        userName = intent.getStringExtra(Constants.USER_NAME)
         setQuestion()
         resetDefaultOptions()
     }
@@ -77,7 +81,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         progressBar?.progress = currentQuestionNumber
 
-        questionProgress?.text = "$currentQuestionNumber/$size"
+        questionProgress?.text = "${currentQuestionNumber+1}/$size"
 
         questionText?.text = question.question
 
@@ -87,6 +91,8 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         optionFour?.text = question.option4
 
         imgFlg?.setImageResource(question.image)
+
+        correctAnswer = question.correctAnswer
 
         Log.i("Question", currentQuestionNumber.toString())
         Log.i("optionOne?.text", optionOne?.text.toString())
@@ -138,6 +144,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     ){
         resetDefaultOptions()
         selectedOption = selectedOptionNum
+        Log.i(selectedOption.toString(), "selectedOptionView: $selectedOption")
         textView.setTextColor(
             Color.parseColor("#363A43")
         )
@@ -207,16 +214,28 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.btSubmit -> {
-                if (currentQuestionNumber < size!!) {
-                    resetDefaultOptions()
-                    setQuestion()
+
+                if (selectedOption == 0){
+                    if (currentQuestionNumber < size!!) {
+                        setQuestion()
+                    }else{
+                        val intent =
+                            Intent(this, Result::class.java)
+                        intent.putExtra(Constants.USER_NAME, userName)
+                        intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
+                        intent.putExtra(Constants.TOTAL_QUESTIONS, questionList?.size)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+                if (currentQuestionNumber < size!! && selectedOption!=0) {
 
                     val question: Question = questionList!![currentQuestionNumber]
 
                     Log.i("Answer", "option"+question.correctAnswer +" : " +currentQuestionNumber)
 
-
-                    if (selectedOption != question.correctAnswer) {
+                    Log.i("ValidateAAnswer", "$selectedOption : ${correctAnswer}")
+                    if (selectedOption != correctAnswer) {
                         answerView(selectedOption, R.drawable.wrong_option_border_bg)
                     } else {
                         mCorrectAnswers++
@@ -231,7 +250,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     currentQuestionNumber++
                     selectedOption = 0
                 }else{
-                    Toast.makeText(this, "You have successfully completed the quiz. Your Score is : $mCorrectAnswers", Toast.LENGTH_SHORT).show()
+
                 }
             }
 

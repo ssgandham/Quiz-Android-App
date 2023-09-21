@@ -33,9 +33,9 @@ object Constants {
             id=1,
             question = "Whats the flag of the country?",
             image = R.drawable.ic_flag_of_belgium,
-            option1 = "India",
+            option1 = "France",
             option2 = "Belgium",
-            option3 = "Bangladesh",
+            option3 = "Japan",
             option4 = "Uzbekistaan",
             correctAnswer = 2
         )
@@ -60,8 +60,8 @@ object Constants {
             option1 = "India",
             option2 = "Nepal",
             option3 = "Bangladesh",
-            option4 = "Uzbekistaan",
-            correctAnswer = 1
+            option4 = "Kuwait",
+            correctAnswer = 4
         )
 
         var question6 = Question(
